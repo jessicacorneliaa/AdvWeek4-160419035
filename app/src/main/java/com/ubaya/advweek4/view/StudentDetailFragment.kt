@@ -5,9 +5,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
 import com.ubaya.advweek4.R
+import com.ubaya.advweek4.viewmodel.DetailViewModel
+import kotlinx.android.synthetic.main.fragment_student_detail.*
 
 class StudentDetailFragment : Fragment() {
+    private lateinit var viewModel: DetailViewModel
+    private val studentListAdapter= StudentListAdapter(arrayListOf())
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -15,5 +20,26 @@ class StudentDetailFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_student_detail, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        viewModel= ViewModelProvider(this).get(DetailViewModel::class.java)
+        viewModel.fetch()
+
+        observeViewModel()
+    }
+    private fun observeViewModel() {
+        viewModel.studentLD.observe(viewLifecycleOwner){
+            val studentId= it.id
+            val studentName= it.name
+            val studentDob= it.dob
+            val studentPhone=it.phone
+            val studentImage=it.photoUrl
+
+            editID.setText(studentId)
+            editName.setText(studentName)
+            editDOB.setText(studentDob)
+            editPhone.setText(studentPhone)
+        }
     }
 }
