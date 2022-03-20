@@ -103,4 +103,14 @@
         android:text="Update"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout4" />
+
+    <ProgressBar
+        android:id="@+id/progressBarStudentDetail"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/imageStudent"
+        app:layout_constraintEnd_toEndOf="@+id/imageStudent"
+        app:layout_constraintStart_toStartOf="@+id/imageStudent"
+        app:layout_constraintTop_toTopOf="@+id/imageStudent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
